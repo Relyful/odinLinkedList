@@ -9,7 +9,23 @@ function linkedList(startValue) {
     currentVal.nextNode = node(value);
   }
 
-  return { list, append };
+  function prepend(value) {
+    let newHead = node(value, this.list);
+    this.list = newHead;
+  }
+
+  function size() {
+    let counter = 1;
+    let currentNode = this.list;
+    do {
+      counter += 1;
+      currentNode = currentNode.nextNode;
+    } while (currentNode.nextNode !== null);
+    console.log(counter);
+    return counter;
+  }
+
+  return { list, append, prepend, size };
 }
 
 function node(value = null, nextNode = null) {
@@ -19,5 +35,7 @@ function node(value = null, nextNode = null) {
 let newList = linkedList("Ahoj ");
 newList.append("ty ");
 newList.append("kral.");
+newList.prepend("Wow, ");
+newList.size();
 
 console.log(newList);
