@@ -33,7 +33,6 @@ function linkedList(startValue) {
     while (lastNode.nextNode !== null) {
       lastNode = lastNode.nextNode;
     }
-    console.log(lastNode);
     return lastNode;
   }
 
@@ -47,7 +46,6 @@ function linkedList(startValue) {
 
     while (currIndex !== index) {
       if (currNode.nextNode === null) {
-        console.log('out of bounds');
         return undefined;
       }
       currIndex += 1;
@@ -65,12 +63,29 @@ function linkedList(startValue) {
       currNode = currNode.nextNode;
       counter += 1;
     }
-    console.log('Popped: ' + currNode.nextNode.value);
     currNode.nextNode = null;
     return;
   }
 
-  return { list, append, prepend, size, head, tail, at, pop };
+  function contains(value) {
+    let target = value;
+    let currNode = this.list;
+    if (currNode.value === target) {
+      return true;
+    }
+    while (currNode.nextNode !== null) {
+      currNode = currNode.nextNode;
+      if (currNode.value === target) {
+        return true;
+        // in case linked list is size 0 and we cannot set nextNode
+      } else if (currNode.nextNode === null) {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  return { list, append, prepend, size, head, tail, at, pop, contains };
 }
 
 function node(value = null, nextNode = null) {
@@ -84,8 +99,9 @@ newList.prepend("Wow, ");
 newList.size();
 newList.head();
 newList.tail();
-newList.at(0); 
+newList.at(0);
 newList.pop();
 newList.tail();
+newList.contains("Ahoj ");
 
 // console.log(newList);
