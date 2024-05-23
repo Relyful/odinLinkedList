@@ -20,16 +20,24 @@ function linkedList(startValue) {
     while (currentNode.nextNode !== null) {
       counter += 1;
       currentNode = currentNode.nextNode;
-    };
+    }
     return counter;
   }
 
   function head() {
-    console.log(this.list);
     return this.list;
   }
 
-  return { list, append, prepend, size, head };
+  function tail() {
+    let lastNode = this.list;
+    while (lastNode.nextNode !== null) {
+      lastNode = lastNode.nextNode;
+    }
+    console.log(lastNode);
+    return lastNode;
+  }
+
+  return { list, append, prepend, size, head, tail };
 }
 
 function node(value = null, nextNode = null) {
@@ -42,5 +50,6 @@ newList.append("kral.");
 newList.prepend("Wow, ");
 newList.size();
 newList.head();
+newList.tail();
 
 // console.log(newList);
