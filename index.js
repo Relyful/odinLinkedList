@@ -21,7 +21,6 @@ function linkedList(startValue) {
       counter += 1;
       currentNode = currentNode.nextNode;
     };
-    console.log(counter);
     return counter;
   }
 
@@ -38,9 +37,10 @@ function node(value = null, nextNode = null) {
 }
 
 let newList = linkedList("Ahoj ");
-// newList.append("ty ");
-// newList.append("kral.");
-// newList.prepend("Wow, ");
+newList.append("ty ");
+newList.append("kral.");
+newList.prepend("Wow, ");
 newList.size();
+newList.head();
 
-console.log(newList);
+// console.log(newList);
