@@ -33,6 +33,7 @@ function linkedList(startValue) {
     while (lastNode.nextNode !== null) {
       lastNode = lastNode.nextNode;
     }
+    console.log(lastNode);
     return lastNode;
   }
 
@@ -41,7 +42,6 @@ function linkedList(startValue) {
     let currNode = this.list;
 
     if (index === 0) {
-      console.log(this.list);
       return this.list;
     }
 
@@ -53,11 +53,24 @@ function linkedList(startValue) {
       currIndex += 1;
       currNode = currNode.nextNode;
     }
-    console.log(currNode);
     return currNode;
   }
 
-  return { list, append, prepend, size, head, tail, at };
+  function pop() {
+    let listSize = this.size();
+    let counter = 1;
+    let currNode = this.list;
+
+    while (counter !== listSize - 1) {
+      currNode = currNode.nextNode;
+      counter += 1;
+    }
+    console.log('Popped: ' + currNode.nextNode.value);
+    currNode.nextNode = null;
+    return;
+  }
+
+  return { list, append, prepend, size, head, tail, at, pop };
 }
 
 function node(value = null, nextNode = null) {
@@ -71,6 +84,8 @@ newList.prepend("Wow, ");
 newList.size();
 newList.head();
 newList.tail();
-newList.at(5); 
+newList.at(0); 
+newList.pop();
+newList.tail();
 
 // console.log(newList);
