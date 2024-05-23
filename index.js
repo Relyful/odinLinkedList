@@ -33,11 +33,31 @@ function linkedList(startValue) {
     while (lastNode.nextNode !== null) {
       lastNode = lastNode.nextNode;
     }
-    console.log(lastNode);
     return lastNode;
   }
 
-  return { list, append, prepend, size, head, tail };
+  function at(index) {
+    let currIndex = 0;
+    let currNode = this.list;
+
+    if (index === 0) {
+      console.log(this.list);
+      return this.list;
+    }
+
+    while (currIndex !== index) {
+      if (currNode.nextNode === null) {
+        console.log('out of bounds');
+        return undefined;
+      }
+      currIndex += 1;
+      currNode = currNode.nextNode;
+    }
+    console.log(currNode);
+    return currNode;
+  }
+
+  return { list, append, prepend, size, head, tail, at };
 }
 
 function node(value = null, nextNode = null) {
@@ -51,5 +71,6 @@ newList.prepend("Wow, ");
 newList.size();
 newList.head();
 newList.tail();
+newList.at(5); 
 
 // console.log(newList);
