@@ -116,7 +116,43 @@ function linkedList(startValue) {
     return resultString;
   }
 
-  return { list, append, prepend, size, head, tail, at, pop, contains, find, toString };
+  function inserAt(value, index) {
+    if (value === 0) {
+      console.log('Use prepend() function instead!');
+      return null;
+    }
+    let currIndex = 1;
+    let currNode = this.list;
+
+    while (currIndex < index) {
+      if (currNode.nextNode === null) {
+        currNode.nextNode = node();
+        currNode = currNode.nextNode;
+        currIndex += 1;
+      } else {
+        currNode = currNode.nextNode;
+        currIndex += 1;
+      }
+    }
+    currNode.nextNode = node(value, currNode.nextNode);
+  }
+
+  function removeAt(index) {
+    if (index === 0) {
+      this.list = this.list.nextNode;
+      return;
+    }
+    let currIndex = 0;
+    let currNode = this.list;
+    while (currIndex < index - 1) {
+      currNode = currNode.nextNode;
+      currIndex += 1;
+    }
+    currNode.nextNode = currNode.nextNode.nextNode;
+    return;
+  }
+
+  return { list, append, prepend, size, head, tail, at, pop, contains, find, toString, inserAt, removeAt };
 }
 
 function node(value = null, nextNode = null) {
@@ -131,10 +167,11 @@ newList.size();
 newList.head();
 newList.tail();
 newList.at(0);
-newList.pop();
 newList.tail();
 newList.contains("Ahoj ");
-newList.find("ty");
-newList.toString();
+newList.inserAt('huhu', 4);
+newList.find("huhu");
+newList.removeAt(4);
+console.log(newList.toString());
 
-// console.log(newList);
+console.log(newList);
