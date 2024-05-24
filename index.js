@@ -99,7 +99,24 @@ function linkedList(startValue) {
     return null;
   }
 
-  return { list, append, prepend, size, head, tail, at, pop, contains, find };
+  function toString() {
+    const listSize = this.size();
+    let currNode = this.list;
+    let resultString = "";
+
+    for (let i = 0; i < listSize; i++) {
+      if (currNode.nextNode === null) {
+        resultString += `(${currNode.value}) -> null`;
+      } else {
+        resultString += `(${currNode.value}) -> `;
+        currNode = currNode.nextNode;
+      }
+            
+    }
+    return resultString;
+  }
+
+  return { list, append, prepend, size, head, tail, at, pop, contains, find, toString };
 }
 
 function node(value = null, nextNode = null) {
@@ -117,5 +134,7 @@ newList.at(0);
 newList.pop();
 newList.tail();
 newList.contains("Ahoj ");
-console.log(newList.find("ty"))
+newList.find("ty");
+newList.toString();
+
 // console.log(newList);
